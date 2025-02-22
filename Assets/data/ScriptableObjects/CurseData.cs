@@ -1,8 +1,9 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace data.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "NewEnemy", menuName = "ScriptableObjects/EnemyData", order = 1)]
+    [CreateAssetMenu(fileName = "NewCurse", menuName = "ScriptableObjects/CurseData", order = 1)]
     public class CurseData : ScriptableObject
     {
         [Header("Basic Info")]
@@ -10,7 +11,6 @@ namespace data.ScriptableObjects
         public string curseName;
         public string description;
         public Sprite curseSprite;
-        public CurseType[] types;
         
         [Header("Stats")]
         public CurseType primaryType;
@@ -21,7 +21,6 @@ namespace data.ScriptableObjects
         public int fleeRate;
         public int baseExpYield;
         public int baseMoneyYield;
-        public int level;
     }
     [System.Serializable]
     public class Stats
@@ -38,6 +37,12 @@ namespace data.ScriptableObjects
             this.defense = defense;
             this.speed = speed;
         }
+
+        public Stats SnapShot()
+        {
+            return new Stats(hp, attack, defense, speed);
+        }
+
     }
 
     public enum CurseType
@@ -49,4 +54,5 @@ namespace data.ScriptableObjects
         Light,
         Dark
     }
+    
 }
